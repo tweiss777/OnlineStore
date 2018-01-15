@@ -1,0 +1,15 @@
+﻿<Properties StartupConfiguration="{CD23D1A9-3247-4E19-BDEE-495759971EB6}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Controllers/HomeController.cs">
+    <Files>
+      <File FileName="appsettings.json" Line="12" Column="1" />
+      <File FileName="Controllers/HomeController.cs" Line="11" Column="22" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.OnlineStoreMVC PreferredExecutionTarget="MonoDevelop.Default" />
+</Properties>
