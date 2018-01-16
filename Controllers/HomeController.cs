@@ -46,6 +46,7 @@ namespace OnlineStoreMVC.Controllers
             return View();
         }
 
+        //make a method for registration confirmation
 
         #endregion
 
