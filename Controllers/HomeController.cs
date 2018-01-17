@@ -33,5 +33,24 @@ namespace OnlineStoreMVC.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        #region sign-up, login, and confirmation
+        public IActionResult Login()
+        {
+            //will take you to the login page
+            return View();
+        }
+
+        public IActionResult CustomerRegistration()
+        {
+            return View();
+        }
+
+        //make a method for registration confirmation
+
+        #endregion
+
+
+
     }
 }
