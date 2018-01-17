@@ -1,6 +1,6 @@
 DROP DATABASE IF EXISTS OnlineStore;
 CREATE DATABASE OnlineStore;
-USE OnlineStore
+USE OnlineStore;
 
 CREATE TABLE car(
     vin INT NOT NULL AUTO_INCREMENT,
