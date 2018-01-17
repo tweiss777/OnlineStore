@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using OnlineStoreMVC.Models;
 
@@ -46,7 +42,11 @@ namespace OnlineStoreMVC.Controllers
             return View();
         }
 
-        //make a method for registration confirmation
+        //Something is wrong here...
+        // public IActionResult RegistrationConfirmation(]Person person)
+        // {
+        //     return View(person);
+        // }
 
         #endregion
 
