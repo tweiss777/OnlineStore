@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using MySql.Data.MySqlClient;
 namespace OnlineStoreMVC.Models
 {
@@ -16,6 +17,13 @@ namespace OnlineStoreMVC.Models
             this.ConnectionString = ConnectionString;
         }
 
-        //Context incomplete...
+        private MySqlConnection GetConnection()
+        {
+            return new MySqlConnection(ConnectionString);
+        }
+
+
+
+
     }
 }
