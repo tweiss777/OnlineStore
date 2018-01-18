@@ -23,7 +23,14 @@ namespace OnlineStoreMVC
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            services.Add(new ServiceDescriptor(typeof(OnlineStoreContext),new OnlineStoreContext(Configuration.GetConnectionString("connection1"))));
+            
+            //register PersonContext as a service
+            services.Add(new ServiceDescriptor(typeof(PersonContext),new PersonContext(Configuration.GetConnectionString("connection1"))));
+
+            //register CarContext as a service
+            services.Add(new ServiceDescriptor(typeof(CarContext), new CarContext(Configuration.GetConnectionString("connection1"))));
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
