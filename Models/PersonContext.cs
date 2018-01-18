@@ -23,12 +23,6 @@ namespace OnlineStoreMVC.Models
             return new MySqlConnection(ConnectionString);
         }
 
-
-        #region methods for adding, removing, updating, and obtaining data from our car table
-
-        #endregion
-
-
         #region methods for adding, removing, updating, and obtaining data from our users table
 
         #endregion
