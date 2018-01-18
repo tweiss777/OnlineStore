@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using OnlineStoreMVC.Models;
 
 namespace OnlineStoreMVC
 {
@@ -22,6 +23,7 @@ namespace OnlineStoreMVC
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.Add(new ServiceDescriptor(typeof(OnlineStoreContext),new OnlineStoreContext(Configuration.GetConnectionString("connection1"))));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
