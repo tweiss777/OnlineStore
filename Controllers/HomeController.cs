@@ -1,4 +1,6 @@
 ﻿using System.Diagnostics;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using OnlineStoreMVC.Models;
 
@@ -42,11 +44,24 @@ namespace OnlineStoreMVC.Controllers
             return View();
         }
 
-        //Something is wrong here...
-        // public IActionResult RegistrationConfirmation(]Person person)
-        // {
-        //     return View(person);
-        // }
+       public IActionResult RegistrationConfirmation([Bind("Password,Firstname,Lastname,Addr1,Addr2,Email")] Person person)
+        {
+            //used to debug potential errors in validation
+            //var errors = ModelState.Where(x => x.Value.Errors.Count > 0).Select(x => new { x.Key, x.Value.Errors }).ToArray();
+
+            if (ModelState.IsValid)
+            {
+                return View(person); //Form validation is not showing up in the page
+            }
+            return RedirectToAction("CustomerRegistration");
+        }
+
+
+        [HttpPost,ValidateAntiForgeryToken,ActionName("Create")]
+        public async Task<IActionResult>ThankYou([Bind("Password,Firstname,Lastname,Addr1,Addr2,Email")] Person person)
+        {
+            return null;
+        }
 
         #endregion
 
