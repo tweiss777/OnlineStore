@@ -11,6 +11,23 @@
 
     <p>@Html.DisplayNameFor(model => model.Firstname)</p>
     <p>@Html.DisplayFor(model => model.Firstname)</p>
+    
     <p>@Html.DisplayNameFor(model => model.Lastname)</p>
     <p>@Html.DisplayFor(model => model.Lastname)</p>
+
+    <p>@Html.DisplayNameFor(model => model.Addr1)</p>
+    <p>@Html.DisplayFor(model => model.Addr1)</p>
+
+    <p>@Html.DisplayNameFor(model => model.Addr2)</p>
+    <p>@Html.DisplayFor(model => model.Addr2)</p>
+
+    <p>@Html.DisplayNameFor(model => model.Email)</p>
+    <p>@Html.DisplayFor(model => model.Email)</p>
+    
+    <a asp-action="CustomerRegistration">go back</a>
 </div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
