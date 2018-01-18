@@ -1,7 +1,50 @@
-﻿
+﻿@model OnlineStoreMVC.Models.Person;
 @{
     ViewData["Title"] = "CustomerRegistration";
 }
 
-<h2>CustomerRegistration</h2>
 
+<div class="container-fluid">
+    <div class="jumbotron">
+        <h2>New user registration</h2>
+    </div>
+    <form asp-action="RegistrationConfirmation" method="POST"><!--asp-action calls the Create method from the controller class in Movies-->
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Firstname" class="control-label"></label>
+                <input asp-for="Firstname" class="form-control" />
+                <span asp-validation-for="Firstname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Lastname" class="control-label"></label>
+                <input asp-for="Lastname" class="form-control" />
+                <span asp-validation-for="Lastname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Addr1" class="control-label"></label>
+                <input asp-for="Addr1" class="form-control" />
+                <span asp-validation-for="Addr1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Addr2" class="control-label"></label>
+                <input asp-for="Addr2" class="form-control" />
+            </div>
+            <div class="form-group"> <!--This was recently added after original schema was created-->
+                <label asp-for="Password" class="control-label"></label>
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control"/>
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Confirm" class="btn btn-default" />
+            </div>
+        </form>
+</div>
+
+@section Scripts { //use this to ensure validation errors show up
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -22,5 +22,8 @@ namespace OnlineStoreMVC.Models
         //non required fields
         public string Trimtype { get; set; }
         public string Color { get; set; }
+
+        [Required]
+        public double Msrp { get; set; }
     }
 }
