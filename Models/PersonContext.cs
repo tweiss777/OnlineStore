@@ -8,12 +8,12 @@ namespace OnlineStoreMVC.Models
 {
 
     //Context for our online store using the entity framework 
-    public class OnlineStoreContext
+    public class PersonContext
     {
         //the context is considered the data tier of our application
         public string ConnectionString { get; set; }
 
-        public OnlineStoreContext(string ConnectionString)
+        public PersonContext(string ConnectionString)
         { //referenced in Startup.cs
             this.ConnectionString = ConnectionString;
         }
@@ -22,12 +22,6 @@ namespace OnlineStoreMVC.Models
         {
             return new MySqlConnection(ConnectionString);
         }
-
-
-        #region methods for adding, removing, updating, and obtaining data from our car table
-
-        #endregion
-
 
         #region methods for adding, removing, updating, and obtaining data from our users table
 
