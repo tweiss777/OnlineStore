@@ -1,0 +1,28 @@
+@model OnlineStoreMVC.Models.Person;
+
+@{
+    ViewData["Title"] = "test page";
+}
+
+<div class="container">
+    <div class="jumbotron">
+        <h1>@ViewData["Title"]</h1>
+    </div>
+    <table class="table-bordered">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.UserID)
+                </th>
+                <th>
+                    @Html.DisplayNamefor(model => model.Password)
+                </th>
+            </tr>
+        </thead>
+        
+        <tbody>
+
+        </tbody>
+    
+    </table>
+</div>
