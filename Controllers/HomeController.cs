@@ -3,11 +3,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using OnlineStoreMVC.Models;
+using Microsoft.Net.Http;
+using System.Collections.Generic;
 
 namespace OnlineStoreMVC.Controllers
 {
     public class HomeController : Controller
     {
+        
         public IActionResult Index()
         {
             return View();
@@ -60,10 +63,22 @@ namespace OnlineStoreMVC.Controllers
         [HttpPost,ValidateAntiForgeryToken,ActionName("Create")]
         public async Task<IActionResult>ThankYou([Bind("Password,Firstname,Lastname,Addr1,Addr2,Email")] Person person)
         {
+            //initialize a new person context below
+            var personContext = HttpContext.RequestServices.GetService(typeof(OnlineStoreMVC.Models.PersonContext));
             return null;
         }
             //need to await an async task
         #endregion
+
+        public async Task<IActionResult> TestPage()
+        {
+            PersonContext personContext = HttpContext.RequestServices.GetService(typeof(PersonContext)) as PersonContext;
+            List<Person> users = new List<Person>();
+
+            users = await personContext.getAllUsersAsync();
+
+            return View(users);
+        }
 
 
 

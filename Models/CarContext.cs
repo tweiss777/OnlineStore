@@ -25,6 +25,10 @@ namespace OnlineStoreMVC.Models
 
 
         #region  methods for adding, removing, updating, and obtaining data from our car table
+            public Task<List<Car>> getAllCarsAsync()
+            {
+                throw new NotImplementedException();
+            }
 
         #endregion
 
