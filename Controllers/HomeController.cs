@@ -5,6 +5,9 @@ using Microsoft.AspNetCore.Mvc;
 using OnlineStoreMVC.Models;
 using Microsoft.Net.Http;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Session;
+using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
 
 namespace OnlineStoreMVC.Controllers
 {
@@ -44,33 +47,50 @@ namespace OnlineStoreMVC.Controllers
 
         public IActionResult CustomerRegistration()
         {
+           if(HttpContext.Session.GetString("person")!=null)
+            {
+                Person person = JsonConvert.DeserializeObject<Person>(HttpContext.Session.GetString("person"));
+                return View(person);
+            }
+
             return View();
+
         }
 
        public IActionResult RegistrationConfirmation([Bind("Password,Firstname,Lastname,Addr1,Addr2,Email")] Person person)
         {
             //used to debug potential errors in validation
             //var errors = ModelState.Where(x => x.Value.Errors.Count > 0).Select(x => new { x.Key, x.Value.Errors }).ToArray();
+            
 
             if (ModelState.IsValid)
             {
+
+                string personJSON = JsonConvert.SerializeObject(person); //converts object to json
+                HttpContext.Session.SetString("person", personJSON); //store object in a session variable
+
                 return View(person); //Form validation is not showing up in the page
             }
             return RedirectToAction("CustomerRegistration");
         }
 
 
-        [HttpPost,ValidateAntiForgeryToken,ActionName("Create")]
+        [HttpPost,ValidateAntiForgeryToken,ActionName("Create")]//Method not implemented yet...
         public async Task<IActionResult>ThankYou([Bind("Password,Firstname,Lastname,Addr1,Addr2,Email")] Person person)
         {
             //initialize a new person context below
             var personContext = HttpContext.RequestServices.GetService(typeof(OnlineStoreMVC.Models.PersonContext));
-            return null;
+            //Implement the add feature
+
+            //Clear session variable with key person
+
+            //return the view
+            return null;//change return value 
         }
             //need to await an async task
         #endregion
 
-        public async Task<IActionResult> TestPage()
+        public async Task<IActionResult> TestPage()//used to test the context classes and commands
         {
             PersonContext personContext = HttpContext.RequestServices.GetService(typeof(PersonContext)) as PersonContext;
             List<Person> users = new List<Person>();

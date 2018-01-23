@@ -1,4 +1,4 @@
-@model OnlineStoreMVC.Models.Person;
+@model IEnumerable<OnlineStoreMVC.Models.Person>;
 
 @{
     ViewData["Title"] = "test page";
@@ -10,18 +10,60 @@
     </div>
     <table class="table-bordered">
         <thead>
-            <tr>
+            <tr> <!--Table headers-->
                 <th>
                     @Html.DisplayNameFor(model => model.UserID)
                 </th>
                 <th>
-                    @Html.DisplayNamefor(model => model.Password)
+                    @Html.DisplayNameFor(model => model.Password)
                 </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Firstname)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Lastname)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Addr1)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Addr2)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Email)
+                </th>
+
             </tr>
         </thead>
         
         <tbody>
+            @foreach(var person in Model)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => person.UserID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => person.Password)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => person.Firstname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => person.Lastname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => person.Addr1)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => person.Addr2)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => person.Email)
+                </td>
+            </tr>
 
+            }
         </tbody>
     
     </table>

@@ -23,6 +23,11 @@ namespace OnlineStoreMVC
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+
+            //The following two lines are used for session based browsing...
+            services.AddDistributedMemoryCache();
+            services.AddSession();
+                
             
             //register PersonContext as a service
             services.Add(new ServiceDescriptor(typeof(PersonContext),new PersonContext(Configuration.GetConnectionString("connection1"))));
@@ -47,6 +52,9 @@ namespace OnlineStoreMVC
 
             app.UseStaticFiles();
 
+            app.UseSession();
+
+            //Adds MVC to the request pipeline
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
