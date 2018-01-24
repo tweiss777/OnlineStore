@@ -81,6 +81,59 @@ namespace OnlineStoreMVC.Models
                 return personList;
 
             });
+
+        }
+
+        public Task<bool> InsertNewUserAsync(Person p)
+        { //Untested
+            return Task.Run(() =>
+           {
+               bool was_success = false; //used to indicate if the query successfully executed
+               MySqlConnection connection = GetConnection();
+               string query = "INSERT INTO person (psswd,fname,lname,addr1,addr2,email) VALUES @password, @first, @last, @a1, @a2, @emailAddr;";
+
+               MySqlCommand command = new MySqlCommand(query, connection);
+
+               //sql command parameters
+               command.Parameters.AddWithValue("@password", p.Password);
+               command.Parameters.AddWithValue("@first", p.Firstname);
+               command.Parameters.AddWithValue("@last", p.Lastname);
+               command.Parameters.AddWithValue("@a1", p.Addr1);
+
+               //check if addresss 2 is null.
+               if(p.Addr2 == null)
+               {
+                   command.Parameters.AddWithValue("@a2", DBNull.Value);
+               }
+               else
+               {
+                   command.Parameters.AddWithValue("@a2", p.Addr2);
+               }
+               command.Parameters.AddWithValue("@emailAddr", p.Email);
+
+
+               try
+               {
+                   connection.Open();
+                   int rowsAffected = command.ExecuteNonQuery();
+                   if(rowsAffected == 1)
+                   {
+                       was_success = true; //if the # of rows affected was equal to one
+                   }
+               }
+               catch(MySqlException sqlException)
+               {
+                   throw new Exception("Something went wrong while inserting", sqlException);
+               }
+
+               finally
+               {
+                   connection.Close();
+               }
+
+               //return the was_success boolean
+               return was_success;
+           });
         }
 
         #endregion

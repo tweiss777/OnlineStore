@@ -56,7 +56,7 @@ namespace OnlineStoreMVC.Controllers
             return View();
 
         }
-
+       [HttpPost,ValidateAntiForgeryToken]
        public IActionResult RegistrationConfirmation([Bind("Password,Firstname,Lastname,Addr1,Addr2,Email")] Person person)
         {
             //used to debug potential errors in validation
@@ -79,9 +79,18 @@ namespace OnlineStoreMVC.Controllers
         public async Task<IActionResult>ThankYou([Bind("Password,Firstname,Lastname,Addr1,Addr2,Email")] Person person)
         {
             //initialize a new person context below
-            var personContext = HttpContext.RequestServices.GetService(typeof(OnlineStoreMVC.Models.PersonContext));
-            //Implement the add feature
+            var personContext = HttpContext.RequestServices.GetService(typeof(PersonContext)) as PersonContext;
 
+            if(HttpContext.Session.GetString("person") != null)
+            {
+                Person new_user = JsonConvert.DeserializeObject<Person>(HttpContext.Session.GetString("person")); //deserialize json to object
+               //insert into database
+
+               //clear session variable
+
+            }
+            //Implement the add feature using stored procedure
+            
             //Clear session variable with key person
 
             //return the view
