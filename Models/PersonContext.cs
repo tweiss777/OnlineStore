@@ -224,7 +224,7 @@ namespace OnlineStoreMVC.Models
                 {
                     connection.Close();
                 }
-                return user
+                return user;
             });
         }
 

@@ -5,26 +5,20 @@
 }
 
 <div class="container">
-    <div class="jumbotron">
-        <h2>Customer Registration Confirmation</h2>
+    <div class="panel panel-default">
+        <div class="panel-heading text-center">
+            <h3>@ViewData["Title"]</h3>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-5 col-sm-5">
+                    @
+                </div>
+            </div>
+        </div>
     </div>
 
-    <p>@Html.DisplayNameFor(model => model.Firstname)</p>
-    <p>@Html.DisplayFor(model => model.Firstname)</p>
-    
-    <p>@Html.DisplayNameFor(model => model.Lastname)</p>
-    <p>@Html.DisplayFor(model => model.Lastname)</p>
-
-    <p>@Html.DisplayNameFor(model => model.Addr1)</p>
-    <p>@Html.DisplayFor(model => model.Addr1)</p>
-
-    <p>@Html.DisplayNameFor(model => model.Addr2)</p>
-    <p>@Html.DisplayFor(model => model.Addr2)</p>
-
-    <p>@Html.DisplayNameFor(model => model.Email)</p>
-    <p>@Html.DisplayFor(model => model.Email)</p>
-    
-    <a asp-action="CustomerRegistration">go back</a>
+    <a asp-action="CustomerRegistration" >go back</a>
 </div>
 
 

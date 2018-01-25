@@ -79,7 +79,7 @@ namespace OnlineStoreMVC.Controllers
         public async Task<IActionResult>ThankYou([Bind("Password,Firstname,Lastname,Addr1,Addr2,Email")] Person person)
         {
             //initialize a new person context below
-            var personContext = HttpContext.RequestServices.GetService(typeof(PersonContext)) as PersonContext;
+            PersonContext personContext = HttpContext.RequestServices.GetService(typeof(PersonContext)) as PersonContext;
 
             if(HttpContext.Session.GetString("person") != null)
             {
@@ -104,7 +104,8 @@ namespace OnlineStoreMVC.Controllers
             PersonContext personContext = HttpContext.RequestServices.GetService(typeof(PersonContext)) as PersonContext;
             List<Person> users = new List<Person>();
 
-            users = await personContext.getAllUsersAsync();
+            users = await personContext.GetAllUsersAsync();
+            
 
             return View(users);
         }
