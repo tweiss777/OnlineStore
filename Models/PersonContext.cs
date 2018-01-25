@@ -24,7 +24,7 @@ namespace OnlineStoreMVC.Models
         }
 
         #region methods for adding, removing, updating, and obtaining data from our users table
-        public Task<List<Person>> getAllUsersAsync()
+        public Task<List<Person>> GetAllUsersAsync()
         {
 
             //throw new NotImplementedException();
@@ -134,6 +134,98 @@ namespace OnlineStoreMVC.Models
                //return the was_success boolean
                return was_success;
            });
+        }
+
+        public Task<bool>DeleteUserAsync(int userID)
+        {
+            return Task.Run(() =>
+            {
+                bool was_success = false; //success value whether the query went through or not 
+                MySqlConnection connection = GetConnection(); //new sql connection object
+                string query = "DELETE FROM person WHERE userID=@UID;";//sql quey command
+
+                MySqlCommand command = new MySqlCommand(query, connection);
+                command.Parameters.AddWithValue("@UID", userID);
+
+                try
+                {
+                    connection.Open();
+                    int rowsAffected = command.ExecuteNonQuery();
+
+                    if (rowsAffected == 1)
+                    {
+                        was_success = true;
+                    }
+                }
+
+                catch(MySqlException ex)
+                {
+                    throw new Exception("something went wrong while deleting ", ex);
+                }
+
+                finally
+                {
+                    connection.Close(); 
+                }
+
+
+                return was_success;
+
+            });
+        }
+
+        public Task<Person> GetUserAsync(int UserID)
+        {
+            return Task.Run(() =>
+            {
+                Person user = new Person();
+                MySqlConnection connection = GetConnection();
+
+                string query = "SELECT * FROM person WHERE userID=@UID;";
+
+                MySqlCommand command = new MySqlCommand(query, connection);
+
+                try
+                {
+                    connection.Open();
+                    using(MySqlDataReader dbReader = command.ExecuteReader())
+                    {
+                        while (dbReader.Read())
+                        {
+                           
+                            user.UserID = Convert.ToInt32(dbReader["userID"]);
+                            user.Password = dbReader["psswrd"].ToString();
+                            user.Firstname = dbReader["fname"].ToString();
+                            user.Lastname = dbReader["lname"].ToString();
+                            user.Addr1 = dbReader["addr1"].ToString();
+                            user.Email = dbReader["email"].ToString();
+                
+                            if (dbReader["addr2"] == DBNull.Value)
+                            {
+                                user.Addr2 = "N/A";
+                            }
+                            else
+                            {
+                                user.Addr2 = dbReader["addr2"].ToString();
+                            }
+
+                            dbReader.Dispose();
+                        }
+
+                           
+                    }
+                }
+
+                catch(MySqlException ex)
+                {
+                    throw new Exception("Something went wrong while deleting", ex);
+                }
+                finally
+                {
+                    connection.Close();
+                }
+                return user
+            });
         }
 
         #endregion
