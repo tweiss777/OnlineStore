@@ -77,7 +77,7 @@ namespace OnlineStoreMVC.Controllers
 
 
         [ValidateAntiForgeryToken,ActionName(name: "ThankYou")]
-        public async Task<IActionResult>ThankYou()
+        public async Task<IActionResult>Create()
         {
             //initialize a new person context below
             PersonContext personContext = HttpContext.RequestServices.GetService(typeof(PersonContext)) as PersonContext;
