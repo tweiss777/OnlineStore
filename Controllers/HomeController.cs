@@ -1,11 +1,8 @@
 ﻿using System.Diagnostics;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using OnlineStoreMVC.Models;
-using Microsoft.Net.Http;
 using System.Collections.Generic;
-using Microsoft.AspNetCore.Session;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using System;

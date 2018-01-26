@@ -175,7 +175,7 @@ namespace OnlineStoreMVC.Models
         }
 
         public Task<Person> GetUserAsync(int UserID)
-        {
+        { //This is a search method used for user id only
             return Task.Run(() =>
             {
                 Person user = new Person();

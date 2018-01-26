@@ -1,14 +1,19 @@
 @model IEnumerable<OnlineStoreMVC.Models.Person>;
 
 @{
-    ViewData["Title"] = "test page";
+    ViewData["Title"] = "Customer Index";
 }
 
 <div class="container">
     <div class="jumbotron">
         <h1>@ViewData["Title"]</h1>
     </div>
-    <table class="table-bordered">
+    <form asp-controller="Admin" asp-action="CustomerIndex" method="GET">
+        Search by user id:<input type="text" name="userID" />
+        <input type="submit" value="Search" />
+        <p class="text-danger">@ViewData["Error"]</p>
+    </form>
+    <table class="table">
         <thead>
             <tr> <!--Table headers-->
                 <th>
