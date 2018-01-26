@@ -75,9 +75,7 @@ namespace OnlineStoreMVC.Controllers
             return RedirectToAction("CustomerRegistration");
         }
 
-
-        [ValidateAntiForgeryToken,ActionName(name: "ThankYou")]
-        public async Task<IActionResult>Create()
+        public async Task<IActionResult>ThankYou() //redirects to thank you page upong submitting 
         {
             //initialize a new person context below
             PersonContext personContext = HttpContext.RequestServices.GetService(typeof(PersonContext)) as PersonContext;
