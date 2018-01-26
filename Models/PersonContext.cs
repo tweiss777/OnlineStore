@@ -90,7 +90,7 @@ namespace OnlineStoreMVC.Models
            {
                bool was_success = false; //used to indicate if the query successfully executed
                MySqlConnection connection = GetConnection();
-               string query = "INSERT INTO person (psswd,fname,lname,addr1,addr2,email) VALUES @password, @first, @last, @a1, @a2, @emailAddr;";
+               string query = "INSERT INTO person (psswrd,fname,lname,addr1,addr2,email) VALUES (@password, @first, @last, @a1, @a2, @emailAddr);";
 
                MySqlCommand command = new MySqlCommand(query, connection);
 

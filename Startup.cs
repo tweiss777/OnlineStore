@@ -26,7 +26,11 @@ namespace OnlineStoreMVC
 
             //The following two lines are used for session based browsing...
             services.AddDistributedMemoryCache();
-            services.AddSession();
+            services.AddSession(options =>
+            {
+                options.Cookie.Name =".AdventureWorks.Session";
+                options.IdleTimeout = TimeSpan.FromMinutes(5); //sessions clear after 5 minutes
+            });
                 
             
             //register PersonContext as a service

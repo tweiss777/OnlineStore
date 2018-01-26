@@ -19,12 +19,58 @@
                 </div>
             </div>
             <div class="row">
-                <
+                <div class="col-md-5 col-sm-5">
+                    @Html.DisplayNameFor(model => model.Lastname)
+                </div>
+                <div class="col-md-5 col-sm-5">
+                    @Html.DisplayFor(model => model.Lastname)
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-5 col-sm-5">
+                    @Html.DisplayNameFor(model => model.Password)
+                </div>
+                <div class="col-md-5 col-sm-5">
+                    @Html.DisplayFor(model => model.Password)
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-5 col-sm-5">
+                    @Html.DisplayNameFor(model => model.Addr1)
+                </div>
+                <div class="col-md-5 col-sm-5">
+                    @Html.DisplayFor(model => model.Addr1)
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-5 col-sm-5">
+                    @Html.DisplayNameFor(model => model.Addr2)
+                </div>
+                <div class="col-md-5 col-sm-5">
+                    @Html.DisplayFor(model => model.Addr2)
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-5 col-sm-5">
+                    @Html.DisplayNameFor(model => model.Email)
+                </div>
+                <div class="col-md-5 col-sm-5">
+                    @Html.DisplayFor(model => model.Email)
+                </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col-md-5 col-sm-5">
+                <a asp-action="CustomerRegistration" >go back</a>
+            </div>
+            <div class="col-md-5 col-sm-5">
+                <a asp-action="Create">submit</a>
+            </div>
+        </div>
+       
     </div>
 
-    <a asp-action="CustomerRegistration" >go back</a>
+    
 </div>
 
 

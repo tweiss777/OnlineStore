@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Session;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
+using System;
 
 namespace OnlineStoreMVC.Controllers
 {
@@ -75,32 +76,39 @@ namespace OnlineStoreMVC.Controllers
         }
 
 
-        [HttpPost,ValidateAntiForgeryToken,ActionName("Create")]//Method not implemented yet...
-        public async Task<IActionResult>ThankYou([Bind("Password,Firstname,Lastname,Addr1,Addr2,Email")] Person person)
+        [ValidateAntiForgeryToken,ActionName(name: "ThankYou")]
+        public async Task<IActionResult>ThankYou()
         {
             //initialize a new person context below
             PersonContext personContext = HttpContext.RequestServices.GetService(typeof(PersonContext)) as PersonContext;
 
+            
+
             if(HttpContext.Session.GetString("person") != null)
             {
-                Person new_user = JsonConvert.DeserializeObject<Person>(HttpContext.Session.GetString("person")); //deserialize json to object
+
+                Person new_user = JsonConvert.DeserializeObject<Person>(HttpContext.Session.GetString("person"));//deserialize json to object
                //insert into database
-
-               //clear session variable
-
+               Console.WriteLine("adding user with the first name {0}",new_user.Firstname);
+               var success = await personContext.InsertNewUserAsync(new_user);
+               HttpContext.Session.Clear(); //clear session variable
+               
+               if(success != true)
+               {
+                   return RedirectToAction("Redirect404Error","Redirect404");//redirects to 404 page if something goes wrong 
+               }
             }
-            //Implement the add feature using stored procedure
+           
             
-            //Clear session variable with key person
 
             //return the view
-            return null;//change return value 
+            return View();//change return value 
         }
             //need to await an async task
         #endregion
 
         public async Task<IActionResult> TestPage()//used to test the context classes and commands
-        {
+        {//this is to be removed upon final deployment
             PersonContext personContext = HttpContext.RequestServices.GetService(typeof(PersonContext)) as PersonContext;
             List<Person> users = new List<Person>();
 
@@ -108,6 +116,9 @@ namespace OnlineStoreMVC.Controllers
             
 
             return View(users);
+            //return RedirectToAction("Redirect404Error","Redirect404");//redirect to controller works
+            //RedirectToAction(action,controller)
+
         }
 
 
