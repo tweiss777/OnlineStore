@@ -20,9 +20,10 @@ namespace OnlineStoreMVC.Controllers
 
             List<Person> users = new List<Person>();
 
-            if (String.IsNullOrEmpty(userID.ToString()))
+            if (String.IsNullOrEmpty(userID))
             {
                 users = await context.GetAllUsersAsync();
+                if(users.)
                 return View(users);
             }
 

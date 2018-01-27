@@ -1,11 +1,16 @@
 ﻿<Properties StartupConfiguration="{CD23D1A9-3247-4E19-BDEE-495759971EB6}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Views/Home/About.cshtml">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Controllers/AdminController.cs">
     <Files>
-      <File FileName="Controllers/HomeController.cs" Line="49" Column="54" />
-      <File FileName="Views/Home/About.cshtml" Line="17" Column="31" />
-      <File FileName="Startup.cs" Line="1" Column="1" />
-      <File FileName="wwwroot/css/mystylesheet.css" Line="12" Column="5" />
+      <File FileName="Controllers/AdminController.cs" Line="34" Column="1" />
+      <File FileName="Models/PersonContext.cs" Line="236" Column="1" />
     </Files>
+    <Pads>
+      <Pad Id="ClassPad">
+        <State name="__root__">
+          <Node name="OnlineStoreMVC" expanded="True" selected="True" />
+        </State>
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
