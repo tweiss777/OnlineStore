@@ -174,16 +174,17 @@ namespace OnlineStoreMVC.Models
             });
         }
 
-        public Task<Person> GetUserAsync(int UserID)
+        public Task<List<Person>> GetUserByIDAsync(int UserID) //return a list of users based on id
         { //This is a search method used for user id only
             return Task.Run(() =>
             {
-                Person user = new Person();
+                List<Person> users = new List<Person>();
                 MySqlConnection connection = GetConnection();
 
                 string query = "SELECT * FROM person WHERE userID=@UID;";
 
                 MySqlCommand command = new MySqlCommand(query, connection);
+                command.Parameters.AddWithValue("@UID", UserID);
 
                 try
                 {
@@ -192,13 +193,17 @@ namespace OnlineStoreMVC.Models
                     {
                         while (dbReader.Read())
                         {
-                           
-                            user.UserID = Convert.ToInt32(dbReader["userID"]);
-                            user.Password = dbReader["psswrd"].ToString();
-                            user.Firstname = dbReader["fname"].ToString();
-                            user.Lastname = dbReader["lname"].ToString();
-                            user.Addr1 = dbReader["addr1"].ToString();
-                            user.Email = dbReader["email"].ToString();
+                            Person user = new Person()
+                            {
+                                UserID = Convert.ToInt32(dbReader["userID"]),
+                                Password = dbReader["psswrd"].ToString(),
+                                Firstname = dbReader["fname"].ToString(),
+                                Lastname = dbReader["lname"].ToString(),
+                                Addr1 = dbReader["addr1"].ToString(),
+                                Email = dbReader["email"].ToString(),
+                            };
+                              
+                            
                 
                             if (dbReader["addr2"] == DBNull.Value)
                             {
@@ -209,22 +214,24 @@ namespace OnlineStoreMVC.Models
                                 user.Addr2 = dbReader["addr2"].ToString();
                             }
 
-                            dbReader.Dispose();
+                            users.Add(user);
+                            
                         }
 
-                           
+                        dbReader.Dispose();
+
                     }
                 }
 
                 catch(MySqlException ex)
                 {
-                    throw new Exception("Something went wrong while deleting", ex);
+                    throw new Exception("Something went wrong while retriving user", ex);
                 }
                 finally
                 {
                     connection.Close();
                 }
-                return user;
+                return users;
             });
         }
 

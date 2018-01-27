@@ -13,21 +13,24 @@ namespace OnlineStoreMVC.Controllers
     public class AdminController : Controller
     {
 
-        public async Task<IActionResult>CustomerIndex(int userID)
+        public async Task<IActionResult>CustomerIndex(String userID)
         {
             ViewData["Error"] = "";//used to display an error message if the user id is not found
             PersonContext context = HttpContext.RequestServices.GetService(typeof(PersonContext)) as PersonContext;
 
             List<Person> users = new List<Person>();
 
-            if(String.IsNullOrEmpty(userID.ToString()))
+            if (String.IsNullOrEmpty(userID.ToString()))
             {
                 users = await context.GetAllUsersAsync();
                 return View(users);
             }
 
-            Person user = await context.GetUserAsync(userID);
-            return View(user); //this may not work
+            users = await context.GetUserByIDAsync(Convert.ToInt32(userID));
+
+
+            return View(users);
+            
         }
 
     }
