@@ -25,5 +25,8 @@ namespace OnlineStoreMVC.Models
 
         [Required]
         public double Msrp { get; set; }
+
+        [Required,Display(Name="Image")]
+        public string imgURL {get; set; }
     }
 }
