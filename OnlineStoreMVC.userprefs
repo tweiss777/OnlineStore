@@ -1,7 +1,7 @@
 ﻿<Properties StartupConfiguration="{CD23D1A9-3247-4E19-BDEE-495759971EB6}|Default">
   <MonoDevelop.Ide.Workbench ActiveDocument="Controllers/AdminController.cs">
     <Files>
-      <File FileName="Controllers/AdminController.cs" Line="34" Column="1" />
+      <File FileName="Controllers/AdminController.cs" Line="29" Column="13" />
       <File FileName="Models/PersonContext.cs" Line="236" Column="1" />
     </Files>
     <Pads>
@@ -14,7 +14,9 @@
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="/Users/talweiss/Desktop/programmingPractice/dotnetcore/OnlineStoreMVC/Controllers/AdminController.cs" relfile="Controllers/AdminController.cs" line="32" column="1" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MultiItemStartupConfigurations />

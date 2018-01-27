@@ -15,7 +15,7 @@ namespace OnlineStoreMVC.Controllers
 
         public async Task<IActionResult>CustomerIndex(String userID)
         {
-            ViewData["Error"] = "";//used to display an error message if the user id is not found
+            ViewData["Message"] = "";//used to display an error message if the user id is not found
             PersonContext context = HttpContext.RequestServices.GetService(typeof(PersonContext)) as PersonContext;
 
             List<Person> users = new List<Person>();
@@ -23,7 +23,10 @@ namespace OnlineStoreMVC.Controllers
             if (String.IsNullOrEmpty(userID))
             {
                 users = await context.GetAllUsersAsync();
-                if(users.)
+                if(users.Count < 1)
+                {
+                    ViewData["Message"] = "User ID " + userID + " not found!";
+                }
                 return View(users);
             }
 
