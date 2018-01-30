@@ -1,9 +1,9 @@
 ﻿<Properties StartupConfiguration="{CD23D1A9-3247-4E19-BDEE-495759971EB6}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Views/Admin/CustomerIndex.cshtml">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Controllers/AdminController.cs">
     <Files>
-      <File FileName="Controllers/AdminController.cs" Line="33" Column="75" />
+      <File FileName="Controllers/AdminController.cs" Line="40" Column="50" />
       <File FileName="Models/PersonContext.cs" Line="27" Column="20" />
-      <File FileName="Views/Admin/CustomerIndex.cshtml" Line="71" Column="40" />
+      <File FileName="Views/Admin/CustomerIndex.cshtml" Line="71" Column="86" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

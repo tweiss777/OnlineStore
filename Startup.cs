@@ -61,13 +61,18 @@ namespace OnlineStoreMVC
             //Adds MVC to the request pipeline
             app.UseMvc(routes =>
             {
-            routes.MapRoute(
+            routes.MapRoute(//route for admin
                 name: "default",
                 template: "{controller=Home}/{action=Index}/{id?}");
             routes.MapRoute(
                 name: "admin",
                 template: "{controller=Admin}/{action=CustomerIndex}/{userID?}" );
+            routes.MapRoute(//route for 404 error
+                name:"Redirect404",
+                template:"{controller=Redirect404}/{action=Redirect404Error}");
             });
+
+
         }
     }
 }
