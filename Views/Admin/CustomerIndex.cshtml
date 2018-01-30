@@ -68,7 +68,7 @@
                     @Html.DisplayFor(modelItem => person.Email)
                 </td>
                 <td>
-                    <a asp-controller="Admin" asp-action="Edit" asp-for="model.UserID">Edit</a>
+                    <a asp-controller="Admin" asp-action="Edit" asp-route-id="@person.UserID">Edit</a>
                 </td>   
 
             </tr>
