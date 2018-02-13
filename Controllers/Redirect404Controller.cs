@@ -11,6 +11,7 @@ namespace OnlineStoreMVC.Controllers
 {
     public class Redirect404Controller: Controller
     {
+        [Route("Redirect404")]
         public IActionResult Redirect404Error() => View();
     }
 }
