@@ -40,7 +40,7 @@ namespace OnlineStoreMVC.Controllers
         }
 
         public async Task<IActionResult> Edit(int? id)
-        {
+        { //This Action takes you to the edit view which is currently in development
             int? userID = id;
             PersonContext context = HttpContext.RequestServices.GetService(typeof(PersonContext)) as PersonContext;
             List<Person> users = new List<Person>();
@@ -52,6 +52,19 @@ namespace OnlineStoreMVC.Controllers
             Person user = users[0];
 
             return RedirectToAction("Redirect404Error", "Redirect404");
+        }
+
+
+        public async Task<IActionResult> Delete(int? id)
+        { 
+            throw new NotImplementedException("please implement this method");
+            
+        }
+
+        [HttpPost,ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteFinal(int id)
+        {
+            throw new NotImplementedException("please implement this method");
         }
 
     }

@@ -1,10 +1,9 @@
 ﻿<Properties StartupConfiguration="{CD23D1A9-3247-4E19-BDEE-495759971EB6}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Startup.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Controllers/AdminController.cs">
     <Files>
-      <File FileName="Controllers/AdminController.cs" Line="16" Column="48" />
+      <File FileName="Controllers/AdminController.cs" Line="25" Column="14" />
       <File FileName="Models/PersonContext.cs" Line="27" Column="20" />
       <File FileName="Views/Admin/CustomerIndex.cshtml" Line="16" Column="26" />
-      <File FileName="Startup.cs" Line="69" Column="83" />
       <File FileName="Controllers/Redirect404Controller.cs" Line="14" Column="31" />
     </Files>
   </MonoDevelop.Ide.Workbench>
