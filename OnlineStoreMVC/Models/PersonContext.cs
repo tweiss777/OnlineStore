@@ -238,8 +238,59 @@ namespace OnlineStoreMVC.Models
         public Task<bool> UpdateUserAsync(int userID, String fname, String lname, String Addr1, String Email, String Addr2 = null )
         {
             return Task.Run(() => {
-                return false;
+                bool success = false;
+                int rowsAffected = 0;
+                MySqlConnection connection = GetConnection();
+                String query = "UPDATE person SET fname = @firstname, lname=@lastname, addr1=@address1, addr2=@address2, email=@Email WHERE userID=@uid;";
+
+                MySqlCommand command = new MySqlCommand(query,connection);
+                command.Parameters.AddWithValue("@firstname", fname);
+                command.Parameters.AddWithValue("@lastname",lname);
+                command.Parameters.AddWithValue("@address1",Addr1);
+                command.Parameters.AddWithValue("@Email",Email);
+
+                if(Addr2 == null)
+                {
+                    command.Parameters.AddWithValue("@address2",DBNull.Value);
+                }
+                else
+                {
+                    command.Parameters.AddWithValue("@address2",Addr2);
+                }
+
+                try
+                {
+                    connection.Open();
+                    rowsAffected = command.ExecuteNonQuery();
+                    if(rowsAffected == 1)
+                    {
+                        success = true;
+                    }
+                }
+                catch(MySqlException ex)
+                {
+                    throw new Exception("Something went wrong while updating user", ex);
+                }
+                finally
+                {
+                    connection.Close();
+                    connection.Dispose();
+                }
+
+
+
+                return success;
             });
+        }
+
+        public Task<bool> UpdateUserPasswordAsync(int userID,String password)
+        {
+            // return Task.Run(() => 
+            // {
+            // 
+            // });
+            throw new NotImplementedException("implementation is missing");
+
         }
 
         #endregion

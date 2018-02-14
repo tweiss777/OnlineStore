@@ -12,7 +12,8 @@
     </div>
 
     <form asp-controller="Admin" asp-action="Edit" method="post">
-        <label asp-for="UserID" class="control-label"></label>
+        <input type="hidden" asp-for="UserID" />
+        
         <div class="form-group">
             <label asp-for="Firstname" class="control-label"></label>
             <input type="text" asp-for="Firstname" class="form-control" />
@@ -22,12 +23,7 @@
             <label asp-for="Lastname" class="control-label"></label>
             <input type="text" asp-for="Lastname" class="form-control" />
             <span asp-validation-for="Lastname" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="Password" class="control-label"></label>
-            <input type="password" asp-for="Password" class="form-control" />
-            <span asp-validation-for="Password" class="text-danger"></span>
-        </div>
+        </div>  
         <div class="form-group">
             <label asp-for="Addr1" class="control-label"></label>
             <input type="text" asp-for="Addr1" class="form-control" />

@@ -55,9 +55,11 @@ namespace OnlineStoreMVC.Controllers
         }
 
         [HttpPost,ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("UserID,Password,Firstname,Lastname,Addr1,Addr2,Email")]Person user)
+        public async Task<IActionResult> Edit(int id, [Bind("UserID,Firstname,Lastname,Addr1,Addr2,Email")]Person user)
         {
             PersonContext context = HttpContext.RequestServices.GetService(typeof(PersonContext)) as PersonContext;
+
+            ModelState.Remove("Password"); //Untested.
 
             if(id != user.UserID)
             {
