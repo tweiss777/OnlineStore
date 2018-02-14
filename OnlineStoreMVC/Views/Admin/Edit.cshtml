@@ -12,6 +12,7 @@
     </div>
 
     <form asp-controller="Admin" asp-action="Edit" method="post">
+        <label asp-for="UserID" class="control-label"></label>
         <div class="form-group">
             <label asp-for="Firstname" class="control-label"></label>
             <input type="text" asp-for="Firstname" class="form-control" />

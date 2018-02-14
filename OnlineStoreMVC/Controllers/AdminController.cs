@@ -54,6 +54,32 @@ namespace OnlineStoreMVC.Controllers
             return View(user);
         }
 
+        [HttpPost,ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int id, [Bind("UserID,Password,Firstname,Lastname,Addr1,Addr2,Email")]Person user)
+        {
+            PersonContext context = HttpContext.RequestServices.GetService(typeof(PersonContext)) as PersonContext;
+
+            if(id != user.UserID)
+            {
+                return RedirectToAction("Redirect404Error","Redirect404");
+            }
+
+            if(!ModelState.IsValid)
+            {
+                return RedirectToAction("Edit");
+            }
+
+            var success = await context.UpdateUserAsync(id,user.Firstname,user.Lastname,user.Addr1,user.Email,user.Addr2);
+            if(success != true)
+            {
+                return RedirectToAction("Redirect404Error","Redirect404");
+
+            }
+
+            return RedirectToAction("CustomerIndex");
+            
+        }
+
 
         public async Task<IActionResult> Delete(int? id)
         { 
@@ -61,6 +87,7 @@ namespace OnlineStoreMVC.Controllers
             
         }
 
+        [ActionName("Delete")]
         [HttpPost,ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteFinal(int id)
         {

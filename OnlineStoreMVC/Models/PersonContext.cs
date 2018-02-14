@@ -235,6 +235,13 @@ namespace OnlineStoreMVC.Models
             });
         }
 
+        public Task<bool> UpdateUserAsync(int userID, String fname, String lname, String Addr1, String Email, String Addr2 = null )
+        {
+            return Task.Run(() => {
+                return false;
+            });
+        }
+
         #endregion
 
 
