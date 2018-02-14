@@ -1,7 +1,8 @@
 ﻿<Properties StartupConfiguration="{DD8F5AC5-DF28-4E15-A95B-49FC0D90B8A3}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="OnlineStoreMVC.Tests/UnitTest1.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="OnlineStoreMVC/Views/Admin/Edit.cshtml">
     <Files>
-      <File FileName="OnlineStoreMVC.Tests/UnitTest1.cs" Line="10" Column="10" />
+      <File FileName="OnlineStoreMVC/Controllers/AdminController.cs" Line="1" Column="1" />
+      <File FileName="OnlineStoreMVC/Views/Admin/Edit.cshtml" Line="11" Column="36" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

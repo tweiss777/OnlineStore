@@ -51,7 +51,7 @@ namespace OnlineStoreMVC.Controllers
 
             Person user = users[0];
 
-            return RedirectToAction("Redirect404Error", "Redirect404");
+            return View(user);
         }
 
 
