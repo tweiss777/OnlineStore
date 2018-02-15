@@ -287,14 +287,41 @@ namespace OnlineStoreMVC.Models
         }
 
         public Task<bool> UpdateUserPasswordAsync(int userID,String password)
-        {
+        {//untested method
             return Task.Run(() => 
             {
+                int rowsAffected = 0;
                 bool success = false;
-                
+                MySqlConnection connection = GetConnection();
+
+                String query = "UPDATE person SET psswrd = @password WHERE userID=@uid";
+                MySqlCommand command = new MySqlCommand(query,connection);
+
+                command.Parameters.AddWithValue("@password",password);
+                command.Parameters.AddWithValue("@uid",userID);
+
+
+                try
+                {
+                    connection.Open();
+                    rowsAffected = command.ExecuteNonQuery();
+                    if(rowsAffected == 1)
+                    {
+                        success = true;
+                    }
+                }
+                catch(MySqlException ex)
+                {
+                    throw new Exception("Something went wrong while updating password.",ex);
+                }
+                finally
+                {
+                    connection.Close();
+                    connection.Dispose();
+                }
+                                
                 return success;
             });
-            throw new NotImplementedException("implementation is missing");
 
         }
 

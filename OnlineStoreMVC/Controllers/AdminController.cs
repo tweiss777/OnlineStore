@@ -82,6 +82,24 @@ namespace OnlineStoreMVC.Controllers
             
         }
 
+        public async Task<IActionResult> EditPassword(int? id)
+        {
+            PersonContext context = HttpContext.RequestServices.GetService(typeof(PersonContext)) as PersonContext;
+            List<Person> users = new List<Person>();
+
+
+            if(id != null)
+            {
+                users = await context.GetUserByIDAsync((int)id);
+            }
+
+            Person user = users[0];
+
+            return View(user);
+
+
+        }
+
 
         public async Task<IActionResult> Delete(int? id)
         { 
