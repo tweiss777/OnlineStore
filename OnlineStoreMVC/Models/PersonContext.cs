@@ -244,6 +244,9 @@ namespace OnlineStoreMVC.Models
                 String query = "UPDATE person SET fname = @firstname, lname=@lastname, addr1=@address1, addr2=@address2, email=@Email WHERE userID=@uid;";
 
                 MySqlCommand command = new MySqlCommand(query,connection);
+                
+                
+                command.Parameters.AddWithValue("@uid",userID);
                 command.Parameters.AddWithValue("@firstname", fname);
                 command.Parameters.AddWithValue("@lastname",lname);
                 command.Parameters.AddWithValue("@address1",Addr1);
@@ -285,10 +288,12 @@ namespace OnlineStoreMVC.Models
 
         public Task<bool> UpdateUserPasswordAsync(int userID,String password)
         {
-            // return Task.Run(() => 
-            // {
-            // 
-            // });
+            return Task.Run(() => 
+            {
+                bool success = false;
+                
+                return success;
+            });
             throw new NotImplementedException("implementation is missing");
 
         }

@@ -59,7 +59,7 @@ namespace OnlineStoreMVC.Controllers
         {
             PersonContext context = HttpContext.RequestServices.GetService(typeof(PersonContext)) as PersonContext;
 
-            ModelState.Remove("Password"); //Untested.
+            ModelState.Remove("Password");
 
             if(id != user.UserID)
             {
