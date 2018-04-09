@@ -66,7 +66,7 @@ namespace OnlineStoreMVC
                 template: "{controller=Home}/{action=Index}/{id?}");
             routes.MapRoute(
                 name: "admin",
-                template: "{controller=Admin}/{action=CustomerIndex}/{userID?}" );
+                template: "{controller=Admin}/{action=CustomerIndex}/{id?}" );
             //routes.MapRoute(//route for 404 error
                 //name:"Redirect404",
                 //template:"{controller=Redirect404}/{action=Redirect404Error}");

@@ -8,10 +8,10 @@
     <div class="jumbotron">
         <h1>@ViewData["Title"]</h1>
     </div>
+    <p class="text-success">@TempData["Message"]</p>
     <form asp-controller="Admin" asp-action="CustomerIndex" method="GET">
-        Search by user id:<input type="text" name="userID" />
+        Search by user id:<input type="text" name="id" />
         <input type="submit" value="Search" />
-        <p class="text-danger">@ViewData["Message"]</p>
     </form>
     <table class="table">
         <thead>
@@ -69,7 +69,9 @@
                 </td>
                 <td>
                     <a asp-controller="Admin" asp-action="Edit" asp-route-id="@person.UserID">Edit</a>
-                </td>   
+                </td>
+                <td>
+                <a asp-controller="Admin" asp-action="EditPassword" asp-route-id="@person.UserID">Change Password</a></td>   
 
             </tr>
 

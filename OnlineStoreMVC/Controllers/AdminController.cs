@@ -12,11 +12,11 @@ namespace OnlineStoreMVC.Controllers
 {
     public class AdminController : Controller
     {
-
+        
         public async Task<IActionResult>CustomerIndex(int? id) //change param type to int and make it nullable
         {
             int? userID = id;
-            ViewData["Message"] = "";//used to display an error message if the user id is not found
+            //used to display an error message if the user id is not found
             PersonContext context = HttpContext.RequestServices.GetService(typeof(PersonContext)) as PersonContext;
 
             List<Person> users = new List<Person>();
@@ -57,6 +57,7 @@ namespace OnlineStoreMVC.Controllers
         [HttpPost,ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("UserID,Firstname,Lastname,Addr1,Addr2,Email")]Person user)
         {
+            ViewData["Message"]="";
             PersonContext context = HttpContext.RequestServices.GetService(typeof(PersonContext)) as PersonContext;
 
             ModelState.Remove("Password");
@@ -77,6 +78,7 @@ namespace OnlineStoreMVC.Controllers
                 return RedirectToAction("Redirect404Error","Redirect404");
 
             }
+            TempData["Message"]=String.Format("Customer id={0} information successfully updated",user.UserID);
 
             return RedirectToAction("CustomerIndex");
             
@@ -84,18 +86,47 @@ namespace OnlineStoreMVC.Controllers
 
         public async Task<IActionResult> EditPassword(int? id)
         {
-            PersonContext context = HttpContext.RequestServices.GetService(typeof(PersonContext)) as PersonContext;
-            List<Person> users = new List<Person>();
-
-
+            Password password = new Password();
             if(id != null)
             {
-                users = await context.GetUserByIDAsync((int)id);
+                password.id = (int)id;
             }
 
+            return View(password);
+
+        }
+
+
+        [HttpPost,ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditPassword(int id,[Bind("id,OldPassword,NewPassword")]Password password)
+        {
+            ViewData["Message"]="";
+            ViewData["Error"] = "";
+            bool was_succes = false;
+            //check if the model is valid
+            if(!ModelState.IsValid)
+            {
+                ViewData["Error"] = "One or more fields are missing";
+                return View(password);
+            }
+
+            PersonContext context = HttpContext.RequestServices.GetService(typeof(PersonContext)) as PersonContext;
+            
+            List<Person> users = await context.GetUserByIDAsync(id);
             Person user = users[0];
 
-            return View(user);
+            if(password.OldPassword != user.Password)
+            {
+                ViewData["Error"] = "Old password entered does not match the one on record.";
+                return View(password);
+            }
+            
+            was_succes = await context.UpdateUserPasswordAsync(id,password.NewPassword);
+
+            if(was_succes == false) return RedirectToAction("Redirect404Error","Redirect404");
+            
+            TempData["Message"] = String.Format("Password change successful for user id {0}!",user.UserID);
+            return RedirectToAction("CustomerIndex");
 
 
         }
