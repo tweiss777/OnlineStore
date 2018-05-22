@@ -84,6 +84,7 @@ namespace OnlineStoreMVC.Controllers
             
         }
 
+        // This loads up the edit password view
         public async Task<IActionResult> EditPassword(int? id)
         {
             Password password = new Password();
@@ -96,12 +97,12 @@ namespace OnlineStoreMVC.Controllers
 
         }
 
-
+        // Actual method for edit password
         [HttpPost,ValidateAntiForgeryToken]
-        public async Task<IActionResult> EditPassword(int id,[Bind("id,OldPassword,NewPassword")]Password password)
+        public async Task<IActionResult> EditPassword(int id,[Bind("id,OldPassword,NewPassword,NewPasswordConfirmed")]Password password)
         {
             ViewData["Message"]="";
-            ViewData["Error"] = "";
+            ViewData["Error"] = ""; // error message
             bool was_succes = false;
             //check if the model is valid
             if(!ModelState.IsValid)
@@ -110,6 +111,11 @@ namespace OnlineStoreMVC.Controllers
                 return View(password);
             }
 
+            if(password.NewPassword != password.NewPasswordConfirmed)
+            {
+                ViewData["Error"] = "Passwords must match!";
+                return View(password);
+            }
             PersonContext context = HttpContext.RequestServices.GetService(typeof(PersonContext)) as PersonContext;
             
             List<Person> users = await context.GetUserByIDAsync(id);
@@ -142,7 +148,15 @@ namespace OnlineStoreMVC.Controllers
         [HttpPost,ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteFinal(int id)
         {
-            throw new NotImplementedException("please implement this method");
+            PersonContext context = HttpContext.RequestServices.GetService(typeof(PersonContext)) as PersonContext;
+            List<Person> users = await context.GetUserByIDAsync(id);
+            Person user = users[0];
+            if(ModelState.IsValid)
+            {
+                return View(user);            
+            }
+            TempData["Message"] = String.Format("user id {0} not found!",user.UserID);
+            return RedirectToAction("CustomerIndex");
         }
 
     }

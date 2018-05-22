@@ -4,6 +4,7 @@
     ViewData["Title"] = "Customer Index";
 }
 
+
 <div class="container">
     <div class="jumbotron">
         <h1>@ViewData["Title"]</h1>
@@ -71,7 +72,11 @@
                     <a asp-controller="Admin" asp-action="Edit" asp-route-id="@person.UserID">Edit</a>
                 </td>
                 <td>
-                <a asp-controller="Admin" asp-action="EditPassword" asp-route-id="@person.UserID">Change Password</a></td>   
+                <a asp-controller="Admin" asp-action="EditPassword" asp-route-id="@person.UserID">Change Password</a>
+                </td>
+                <td>
+                <a asp-controller="Admin" asp-action="DeleteFinal" asp-route-id="@person.UserID">Delete</a>
+                </td>
 
             </tr>
 

@@ -14,6 +14,9 @@ namespace OnlineStoreMVC.Models
         [Required,Display(Name="New Password")]
         public String NewPassword{get;set;}
 
+        [Required,Display(Name="Confirm new password")]
+        public String NewPasswordConfirmed{get;set;}
+
 
     }
     

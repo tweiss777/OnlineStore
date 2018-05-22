@@ -53,11 +53,9 @@ namespace OnlineStoreMVC
             {
                 app.UseExceptionHandler("/Home/Error");
             }
-
+            // app.UseHttpsRedirection();
             app.UseStaticFiles();
-
             app.UseSession();
-
             //Adds MVC to the request pipeline
             app.UseMvc(routes =>
             {
