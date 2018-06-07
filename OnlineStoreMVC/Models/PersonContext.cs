@@ -324,7 +324,37 @@ namespace OnlineStoreMVC.Models
             });
 
         }
+    public Task<Person> getUserByEmailPassword(String email, String password)
+    {
+        //Method untested
+        return Task.Run(() => 
+        {   Person user;
+            MySqlConnection connection = GetConnection();
+            String query = "SELECT email,psswrd FROM person WHERE email=@email AND psswrd=@password;";
 
+            MySqlCommand command = new MySqlCommand(query,connection);
+            command.Parameters.AddWithValue("@email",email);
+            command.Parameters.AddWithValue("@password",password);
+            try
+            {
+                connection.Open();
+                user = new Person (command.ExecuteScalar());
+            }
+            catch(MySqlException ex)
+            {
+                throw new Exception(message: "Something went wrong.", ex);
+            }
+            finally
+            {
+                connection.Close();
+                connection.Dispose();
+            }
+
+            return user; // return the user
+
+        });
+
+    }
         #endregion
 
 

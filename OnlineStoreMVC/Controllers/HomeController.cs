@@ -14,6 +14,8 @@ namespace OnlineStoreMVC.Controllers
         
         public IActionResult Index()
         {
+            //Check if there is a cookie.
+            //If cookie exists 
             return View();
         }
 
@@ -37,10 +39,32 @@ namespace OnlineStoreMVC.Controllers
         }
 
         #region sign-up, login, and confirmation
+
+        [Route("Login")]
         public IActionResult Login()
         {
             //will take you to the login page
             return View();
+        }
+
+        [HttpPost,ValidateAntiForgeryToken]
+        public async Task<IActionResult> Login([Bind("Email,Password")]Person person){
+            //Find name and password in the database
+            //if name and password match login and store cookie in browser
+            //else.
+            ViewData["Message"] = "";
+            ViewData["Error"] = "";
+
+            bool was_success = false;
+            if(!ModelState.IsValid)
+            {
+                ViewData["Error"] = "Invalid username or password.";
+                return RedirectToAction(nameof(Login);
+            } 
+
+            was_success = await 
+
+
         }
 
         public IActionResult CustomerRegistration()

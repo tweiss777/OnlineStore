@@ -85,7 +85,7 @@ namespace OnlineStoreMVC.Controllers
         }
 
         // This loads up the edit password view
-        public async Task<IActionResult> EditPassword(int? id)
+        public Task<IActionResult> EditPassword(int? id)
         {
             Password password = new Password();
             if(id != null)
@@ -93,7 +93,7 @@ namespace OnlineStoreMVC.Controllers
                 password.id = (int)id;
             }
 
-            return View(password);
+            return View(model: password);
 
         }
 

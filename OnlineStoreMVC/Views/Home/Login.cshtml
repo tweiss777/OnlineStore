@@ -1,9 +1,21 @@
 ﻿
+@model OnlineStoreMVC.Models.Person;
 @{
     ViewData["Title"] = "Login";
 }
 
 <h2>Login</h2>
+
+<div class="container">
+    <p>Enter email and password</p>
+    <form asp-action="Login" method="POST">
+        <label asp-for="Email" class="control-label"></label>
+        <input type="text" asp-for="Email" class="form-control" placeholder="Email"/>
+        <label asp-for="Password" class="control-label"></label>
+        <input type="password" asp-for="Password" class="form-control" placeholder="Password" /><br><br>
+        <input type="submit" value="Login" class="btn btn-default" />
+    </form>
+</div>
 
 
 <!--form tags-->
