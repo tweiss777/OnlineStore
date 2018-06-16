@@ -55,7 +55,7 @@ namespace OnlineStoreMVC.Controllers
             ViewData["Message"] = "";
             ViewData["Error"] = "";
 
-            bool was_success = false; //Remove boolean and replace with var of type Person
+            bool was_success = false; //remove boolean and replace with var of type Person
             if(!ModelState.IsValid)
             {
                 //If email and or password is missing
