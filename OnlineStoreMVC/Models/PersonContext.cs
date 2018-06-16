@@ -324,7 +324,7 @@ namespace OnlineStoreMVC.Models
             });
 
         }
-    public Task<Person> getUserByEmailPassword(String email, String password)
+    public Task<Person> GetUserByEmailPassword(String email, String password)
     {
         //Method untested
         return Task.Run(() => 
@@ -338,7 +338,7 @@ namespace OnlineStoreMVC.Models
             try
             {
                 connection.Open();
-                user = new Person (command.ExecuteScalar());
+                user = (Person)command.ExecuteScalar(); //Unsure if this implementation will work.
             }
             catch(MySqlException ex)
             {

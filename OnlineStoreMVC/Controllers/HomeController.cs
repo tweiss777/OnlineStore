@@ -55,14 +55,13 @@ namespace OnlineStoreMVC.Controllers
             ViewData["Message"] = "";
             ViewData["Error"] = "";
 
-            bool was_success = false;
+            bool was_success = false; //remove boolean and replace with var of type Person
             if(!ModelState.IsValid)
             {
+                //If email and or password is missing
                 ViewData["Error"] = "Invalid username or password.";
-                return RedirectToAction(nameof(Login);
-            } 
-
-            was_success = await 
+                return RedirectToAction("Login");
+            }   
 
 
         }
