@@ -85,7 +85,7 @@ namespace OnlineStoreMVC.Controllers
         }
 
         // This loads up the edit password view
-        public Task<IActionResult> EditPassword(int? id)
+        public async Task<IActionResult> EditPassword(int? id)
         {
             Password password = new Password();
             if(id != null)
