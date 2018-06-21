@@ -54,14 +54,31 @@ namespace OnlineStoreMVC.Controllers
             //else.
             ViewData["Message"] = "";
             ViewData["Error"] = "";
+            PersonContext pc = HttpContext.RequestServices.GetService(typeof(PersonContext)) as PersonContext;
 
-            bool was_success = false; //remove boolean and replace with var of type Person
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 //If email and or password is missing
                 ViewData["Error"] = "Invalid username or password.";
+                Console.WriteLine("Login failed. One or more fields are missing.");
                 return RedirectToAction("Login");
-            }   
+            }
+
+            Person user = await pc.GetUserByEmailPassword(person.Email, person.Password);
+            
+            //If no user is returned (user = null) then user will be redirected to the login page.
+            if(user == null)
+            {
+                ViewData["Error"] = "Invalid username or password.";
+                Console.WriteLine("Login failed. Invalid username or password");
+                return RedirectToAction("Login");
+            }
+
+            //Create a session with the user that logged in
+            Console.WriteLine("Login was successful.");
+            return RedirectToAction("Index");
+
+
 
 
         }
@@ -138,6 +155,9 @@ namespace OnlineStoreMVC.Controllers
             //RedirectToAction(action,controller)
 
         }
+
+
+
 
 
 

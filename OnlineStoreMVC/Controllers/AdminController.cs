@@ -93,7 +93,7 @@ namespace OnlineStoreMVC.Controllers
                 password.id = (int)id;
             }
 
-            return View(model: password);
+            return View(password);
 
         }
 

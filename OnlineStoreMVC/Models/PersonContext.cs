@@ -355,8 +355,22 @@ namespace OnlineStoreMVC.Models
         });
 
     }
+    
+    /*
+     *<summary> 
+     * Resets the auto increment value in the database to the last value incremented
+     * </summary>
+     * <returns>
+     * bool value to indicate if the change was a success
+     * </returns>
+     */
         #endregion
+    public bool ResetAutoIncrement()
+        {
+            List<Person> users = new List<Person>();
+            return false;
 
+        }
 
 
     }
