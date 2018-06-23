@@ -29,7 +29,7 @@ namespace OnlineStoreMVC
             services.AddSession(options =>
             {
                 options.Cookie.Name =".AdventureWorks.Session";
-                options.IdleTimeout = TimeSpan.FromMinutes(5); //sessions clear after 5 minutes
+                options.IdleTimeout = TimeSpan.FromMinutes(3); //sessions clear after 3 minutes. Note this has nothing to do with cookie expirations
             });
                 
             
@@ -55,6 +55,7 @@ namespace OnlineStoreMVC
             }
             // app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.UseCookiePolicy();
             app.UseSession();
             //Adds MVC to the request pipeline
             app.UseMvc(routes =>

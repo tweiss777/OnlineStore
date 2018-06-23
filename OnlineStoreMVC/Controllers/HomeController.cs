@@ -52,16 +52,37 @@ namespace OnlineStoreMVC.Controllers
             //Find name and password in the database
             //if name and password match login and store cookie in browser
             //else.
+            PersonContext pc = HttpContext.RequestServices.GetService(typeof(PersonContext)) as PersonContext;
             ViewData["Message"] = "";
             ViewData["Error"] = "";
 
-            bool was_success = false; //remove boolean and replace with var of type Person
             if(!ModelState.IsValid)
             {
                 //If email and or password is missing
                 ViewData["Error"] = "Invalid username or password.";
                 return RedirectToAction("Login");
-            }   
+            }
+
+            Person user = await pc.GetUserByEmailPassword(person.Email, person.Password);
+
+            if(user == null)
+            {
+                ViewData["Error"] = "Invalid username or password";
+                return RedirectToAction("Login");
+            }
+
+            // Set the cookie and return the view.
+
+            
+
+
+
+
+
+
+            
+
+
 
 
         }
