@@ -14,9 +14,9 @@ namespace OnlineStoreMVC.HelperLayers
         private CookieOptions options;
 
 
-        //<summary>Cookie constructor</summary>
-        //<param name="key">the cookie key</param>
-        //<param name="value">the cookie value</param>
+        ///<summary>Cookie constructor</summary>
+        ///<param name="key">the cookie key</param>
+        ///<param name="value">the cookie value</param>
         #region cookie constructors
         public Cookie(string key, string value)
         {
@@ -37,11 +37,11 @@ namespace OnlineStoreMVC.HelperLayers
             //this.options = options;
         //}
         #endregion
-        
-        /*
-         <summary>Sets the cookie</summary>
-         <returns> true if success, false if otherwise</returns>
-         */
+
+
+         ///<summary>Sets the cookie</summary>
+         ///<returns> true if success, false if otherwise</returns>
+
         public bool SetCookie(int? expireTime)
         {
             //If you have an expiretime set it.

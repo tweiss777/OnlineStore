@@ -65,7 +65,7 @@ namespace OnlineStoreMVC.Controllers
 
             Person user = await pc.GetUserByEmailPassword(person.Email, person.Password);
 
-            if(user == null)
+            if (user == null)
             {
                 ViewData["Error"] = "Invalid username or password";
                 return RedirectToAction("Login");
