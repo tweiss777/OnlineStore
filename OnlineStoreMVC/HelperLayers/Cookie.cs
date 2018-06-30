@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace OnlineStoreMVC.HelperLayers
 {
@@ -31,6 +32,20 @@ namespace OnlineStoreMVC.HelperLayers
         {
             //If you have an expiretime set it.
             bool success = false; //success indicator
+
+            //Add an expire time to the cookie if value has been passed in expiretime
+            if(expireTime.HasValue)
+            {
+                options.Expires = DateTime.Now.AddMinutes(expireTime.Value);
+            }
+            else
+            {
+                options.Expires = DateTime.Now.AddSeconds(60);
+            }
+
+            //set the cookie
+            Response.Cookies.Append(cookieKey, cookieVal, options);
+
             return success;
         }
         
