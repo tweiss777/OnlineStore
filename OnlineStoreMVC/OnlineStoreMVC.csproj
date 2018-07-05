@@ -26,6 +26,7 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.1" />
     <PackageReference Include="MySql.Data" Version="8.0.11" />
     <PackageReference Include="Microsoft.AspNet.Razor" Version="3.2.6" />
+    <PackageReference Include="bootstrap" Version="4.1.1" />
   </ItemGroup>
 
   <ItemGroup>
@@ -33,5 +34,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="HelperLayers\" />
+    <Folder Include="Views\UserHome\" />
   </ItemGroup>
 </Project>

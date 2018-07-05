@@ -27,6 +27,7 @@ namespace OnlineStoreMVC
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(
                 options => {
                 options.LoginPath = "/Login";
+                options.AccessDeniedPath = "/Home/Index";
             });
             services.AddMvc();
 

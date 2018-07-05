@@ -7,6 +7,9 @@ using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using System;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.AspNetCore.Authentication;
+using OnlineStoreMVC.HelperLayers;
+using System.Security.Claims;
 
 namespace OnlineStoreMVC.Controllers
 {
@@ -41,15 +44,14 @@ namespace OnlineStoreMVC.Controllers
 
         #region sign-up, login, and confirmation
 
-        [Route("Login")]
         public IActionResult Login()
         {
             //will take you to the login page
             return View();
         }
 
-        [HttpPost,ValidateAntiForgeryToken]
-        public async Task<IActionResult> Login([Bind("Email,Password")]Person person){
+        [HttpPost,ActionName("Login"),ValidateAntiForgeryToken]
+        public async Task<IActionResult> LoginUser([Bind("Email,Password")]Person person){
             //Find name and password in the database
             //if name and password match login and store cookie in browser
             //else.
@@ -73,6 +75,21 @@ namespace OnlineStoreMVC.Controllers
                 ViewData["Error"] = "Invalid username or password";
                 return View();
             }
+
+            LoginHelper loginHelper = new LoginHelper(user);
+            ClaimsPrincipal principle = loginHelper.GetClaimsPrincipal();
+
+            try{
+                await HttpContext.SignInAsync(principle);
+            }
+            catch(Exception e){
+                ViewData["Error"] = "Something went wrong while authenticating please try again later";
+                return View();
+            }
+
+            //return redirect to the authenticated controller.
+            return RedirectToAction("Index", "UserHome");
+
 
             // Set the cookie and return the view.
         }
