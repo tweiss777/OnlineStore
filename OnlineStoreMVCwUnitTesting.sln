@@ -2,9 +2,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.0
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineStoreMVC", "OnlineStoreMVC\OnlineStoreMVC.csproj", "{DD8F5AC5-DF28-4E15-A95B-49FC0D90B8A3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineStoreMVC", "OnlineStoreMVC\OnlineStoreMVC.csproj", "{DD8F5AC5-DF28-4E15-A95B-49FC0D90B8A3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineStoreMVC.Tests", "OnlineStoreMVC.Tests\OnlineStoreMVC.Tests.csproj", "{3366C4B4-D311-4B5E-9492-4D8E7799CC06}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineStoreMVC.Tests", "OnlineStoreMVC.Tests\OnlineStoreMVC.Tests.csproj", "{3366C4B4-D311-4B5E-9492-4D8E7799CC06}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

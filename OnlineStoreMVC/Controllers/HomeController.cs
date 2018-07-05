@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using System;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace OnlineStoreMVC.Controllers
 {
@@ -56,11 +57,13 @@ namespace OnlineStoreMVC.Controllers
             ViewData["Message"] = "";
             ViewData["Error"] = "";
 
+
+
             if(!ModelState.IsValid)
             {
                 //If email and or password is missing
                 ViewData["Error"] = "Invalid username or password.";
-                return RedirectToAction("Login");
+                return View();
             }
 
             Person user = await pc.GetUserByEmailPassword(person.Email, person.Password);
@@ -68,23 +71,10 @@ namespace OnlineStoreMVC.Controllers
             if (user == null)
             {
                 ViewData["Error"] = "Invalid username or password";
-                return RedirectToAction("Login");
+                return View();
             }
 
             // Set the cookie and return the view.
-
-            
-
-
-
-
-
-
-            
-
-
-
-
         }
 
         public IActionResult CustomerRegistration()

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -22,6 +23,11 @@ namespace OnlineStoreMVC
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //Cookie Authentication
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(
+                options => {
+                options.LoginPath = "/Login";
+            });
             services.AddMvc();
 
             //The following two lines are used for session based browsing...
@@ -31,7 +37,8 @@ namespace OnlineStoreMVC
                 options.Cookie.Name =".AdventureWorks.Session";
                 options.IdleTimeout = TimeSpan.FromMinutes(3); //sessions clear after 3 minutes. Note this has nothing to do with cookie expirations
             });
-                
+
+
             
             //register PersonContext as a service
             services.Add(new ServiceDescriptor(typeof(PersonContext),new PersonContext(Configuration.GetConnectionString("connection1"))));
@@ -66,9 +73,7 @@ namespace OnlineStoreMVC
             routes.MapRoute(
                 name: "admin",
                 template: "{controller=Admin}/{action=CustomerIndex}/{id?}" );
-            //routes.MapRoute(//route for 404 error
-                //name:"Redirect404",
-                //template:"{controller=Redirect404}/{action=Redirect404Error}");
+            
             });
 
 
