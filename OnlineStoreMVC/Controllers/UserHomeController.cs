@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace OnlineStoreMVC.Controllers
 {
+    //Controller for authenticated users.
     [Authorize]
     public class UserHomeController : Controller
     {
@@ -17,6 +18,7 @@ namespace OnlineStoreMVC.Controllers
 
         public IActionResult Index()
         {
+            
             return View();
         }
 
