@@ -8,7 +8,10 @@
 
 <div class="container">
     @* You might need an if statement *@
-    <p class="alert text-danger">@ViewData["Error"]</p>
+    @if(TempData["Error"]!= null)
+    {
+        <p class="alert alert-danger">@TempData["Error"]</p>
+    }
     <p>Enter email and password</p>
     <form asp-action="Login" method="POST">
         <label asp-for="Email" class="control-label"></label>

@@ -56,15 +56,13 @@ namespace OnlineStoreMVC.Controllers
             //if name and password match login and store cookie in browser
             //else.
             PersonContext pc = HttpContext.RequestServices.GetService(typeof(PersonContext)) as PersonContext;
-            //ViewData["Message"] = "";
-            //ViewData["Error"] = "";
-
+            
 
 
             if(!ModelState.IsValid)
             {
                 //If email and or password is missing
-                ViewData["Error"] = "Invalid username or password.";
+                TempData["Error"] = "Invalid username or password.";
                 return View();
             }
 
@@ -72,7 +70,7 @@ namespace OnlineStoreMVC.Controllers
 
             if (user == null)
             {
-                ViewData["Error"] = "Invalid username or password";
+                TempData["Error"] = "Invalid username or password";
                 return View();
             }
 
@@ -83,7 +81,7 @@ namespace OnlineStoreMVC.Controllers
                 await HttpContext.SignInAsync(principle);
             }
             catch(Exception e){
-                ViewData["Error"] = "Something went wrong while authenticating please try again later";
+                TempData["Error"] = "Something went wrong while authenticating please try again later";
                 return View();
             }
 
