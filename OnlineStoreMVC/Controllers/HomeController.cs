@@ -56,8 +56,8 @@ namespace OnlineStoreMVC.Controllers
             //if name and password match login and store cookie in browser
             //else.
             PersonContext pc = HttpContext.RequestServices.GetService(typeof(PersonContext)) as PersonContext;
-            ViewData["Message"] = "";
-            ViewData["Error"] = "";
+            //ViewData["Message"] = "";
+            //ViewData["Error"] = "";
 
 
 
