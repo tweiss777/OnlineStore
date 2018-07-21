@@ -101,19 +101,20 @@ namespace OnlineStoreMVC.Controllers
         [HttpPost,ValidateAntiForgeryToken]
         public async Task<IActionResult> EditPassword(int id,[Bind("id,OldPassword,NewPassword,NewPasswordConfirmed")]Password password)
         {
-            ViewData["Message"]="";
-            ViewData["Error"] = ""; // error message
+            //Change these to temp data
+            TempData["Message"]="";
+            TempData["Error"] = ""; // error message
             bool was_succes = false;
             //check if the model is valid
             if(!ModelState.IsValid)
             {
-                ViewData["Error"] = "One or more fields are missing";
+                TempData["Error"] = "One or more fields are missing";
                 return View(password);
             }
 
             if(password.NewPassword != password.NewPasswordConfirmed)
             {
-                ViewData["Error"] = "Passwords must match!";
+                TempData["Error"] = "Passwords must match!";
                 return View(password);
             }
             PersonContext context = HttpContext.RequestServices.GetService(typeof(PersonContext)) as PersonContext;
@@ -123,7 +124,7 @@ namespace OnlineStoreMVC.Controllers
 
             if(password.OldPassword != user.Password)
             {
-                ViewData["Error"] = "Old password entered does not match the one on record.";
+                TempData["Error"] = "Old password entered does not match the one on record.";
                 return View(password);
             }
             

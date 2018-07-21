@@ -9,7 +9,10 @@
     <div class="jumbotron">
         <h1>@ViewData["Title"]</h1>
     </div>
-    <p class="text-success">@TempData["Message"]</p>
+    @if(TempData["Message"]!= null)
+    {
+        <p class="alert alert-success">@TempData["Message"]</p>
+    }
     <form asp-controller="Admin" asp-action="CustomerIndex" method="GET">
         Search by user id:<input type="text" name="id" />
         <input type="submit" value="Search" />
